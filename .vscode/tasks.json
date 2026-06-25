@@ -11,6 +11,11 @@
 				"origin",
 				"master:main"
 			]
+		},
+		{
+			"label": "merge-main-into-master",
+			"type": "shell",
+			"command": "git fetch origin && git checkout master && git merge origin/main && git status --short --branch"
 		}
 	]
 }
