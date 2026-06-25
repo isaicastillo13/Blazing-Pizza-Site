@@ -1,35 +1,51 @@
 @page "/"
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
-<section class="main home-page">
-  <div class="hero-panel text-center text-md-left">
-    <p class="hero-kicker">Recetas calientes, estilo casero</p>
-    <h1>Blazing Pizzas</h1>
-    <p class="hero-copy">Elige una especialidad y practica componentes, estilos y datos con Blazor.</p>
-  </div>
+@using PizzaModel = BlazingPizza.Pizza
 
-  <ul class="pizza-cards">
+<div class="main">
+    <h1>Blazing Pizzas</h1>
+    <ul class="pizza-cards">
     @if (specials != null)
     {
-      @foreach (var special in specials)
-      {
-        <li style="background-image: url('@special.ImageUrl')">
-          <div class="pizza-info">
-              <span class="title">@special.Name</span>
-                  @special.Description
-                <span class="price">@special.GetFormattedBasePrice()</span>
-          </div>
-        </li>
-      }
+        @foreach (var special in specials)
+        {
+          <li @onclick="@(() => ShowConfigurePizzaDialog(special))" style="background-image: url('@special.ImageUrl')">
+            <div class="pizza-info">
+            <span class="title">@special.Name</span>
+            @special.Description
+            <span class="price">@special.GetFormattedBasePrice()</span>
+            </div>
+          </li>
+        }
     }
-  </ul>
-</section>
+    </ul>
+</div>
+
+@if (showingConfigureDialog)
+{
+    <ConfigurePizzaDialog Pizza="configuringPizza" />
+}
 
 @code {
     List<PizzaSpecial> specials = new();
+    PizzaModel configuringPizza;
+    bool showingConfigureDialog;
 
-   protected override async Task OnInitializedAsync()
-{
-    specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(NavigationManager.BaseUri + "specials");
-}
+    protected override async Task OnInitializedAsync()
+    {
+        specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(NavigationManager.BaseUri + "specials");
+    }
+
+    void ShowConfigurePizzaDialog(PizzaSpecial special)
+    {
+        configuringPizza = new PizzaModel()
+        {
+            Special = special,
+            SpecialId = special.Id,
+            Size = PizzaModel.DefaultSize
+        };
+
+        showingConfigureDialog = true;
+    }
 }
