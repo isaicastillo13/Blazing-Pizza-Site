@@ -756,3 +756,147 @@ input[type=range] {
         transform: translateX(500px);
     }
 }
+
+/* Simple study styles layered on top of Bootstrap. */
+body {
+    background: #fff7ef;
+    color: #2b2b2b;
+    overflow-y: auto;
+}
+
+.app-header {
+    gap: 1.5rem;
+}
+
+.app-logo {
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+.app-logo:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.app-nav {
+    display: flex;
+}
+
+.app-shell {
+    min-height: calc(100vh - 5rem);
+    background: #fff7ef;
+}
+
+.home-page,
+.pizzas-page {
+    width: 100%;
+}
+
+.hero-panel {
+    max-width: 980px;
+    margin: 0 auto 2rem auto;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #fff 0%, #fff0de 100%);
+    box-shadow: 0 10px 30px rgba(128, 45, 18, 0.12);
+}
+
+.hero-panel h1,
+.pizzas-page h1 {
+    color: #b52b22;
+    font-weight: 700;
+}
+
+.hero-kicker {
+    margin-bottom: 0.35rem;
+    color: #d45352;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero-copy {
+    max-width: 620px;
+    margin-bottom: 0;
+    color: #6c4a3b;
+    font-size: 1.1rem;
+}
+
+.pizza-cards {
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.pizza-cards > li {
+    min-height: 12rem;
+    overflow: hidden;
+}
+
+.pizza-cards > li:hover {
+    box-shadow: 0 12px 24px rgba(77, 28, 12, 0.24);
+}
+
+.pizzas-container {
+    max-width: 1000px;
+}
+
+.menu-card,
+.loading-card {
+    border: 1px solid rgba(181, 43, 34, 0.12);
+    border-radius: 1rem;
+    background: white;
+    overflow: hidden;
+}
+
+.loading-card {
+    padding: 2rem;
+}
+
+.menu-card thead {
+    background: #b52b22;
+    color: white;
+}
+
+.menu-card th,
+.menu-card td {
+    vertical-align: middle;
+}
+
+@media (max-width: 767.98px) {
+    body {
+        padding-top: 7rem;
+    }
+
+    .top-bar.app-header {
+        height: 7rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .logo > img {
+        width: 7rem;
+        margin-right: 0;
+    }
+
+    .nav-tab {
+        padding: 0.3rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .nav-tab.active:after {
+        display: none;
+    }
+
+    .main {
+        padding: 1rem !important;
+    }
+
+    .hero-panel {
+        padding: 1.25rem;
+    }
+}
