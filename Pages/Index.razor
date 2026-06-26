@@ -48,6 +48,7 @@
                   <div class="item-price">
                       @configuredPizza.GetFormattedTotalPrice()
                   </div>
+                  <a @onclick="@(() => OrderState.RemoveConfiguredPizza(configuredPizza))" class="delete-item">x</a>
               </div>
             }
         </div>
@@ -69,6 +70,7 @@
 @code {
     List<PizzaSpecial> specials = new();
         Order order => OrderState.Order;
+        
 
 
     protected override async Task OnInitializedAsync()
